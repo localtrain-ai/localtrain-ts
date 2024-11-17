@@ -1,5 +1,5 @@
 {
-  "name": "localtrain-core",
+  "name": "@localtrain.ai/core",
   "version": "0.0.1",
   "scripts": {
     "build": "tsc -p ."
@@ -18,7 +18,14 @@
   },
   "type": "commonjs",
   "typings": "./src/index.d.ts",
-  "private": true,
+  "keywords": ["ai", "machine-learning", "local-development", "training"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/localtrain.git",
+    "directory": "packages/core"
+  },
+  "author": "Your Name",
+  "license": "MIT",
   "devDependencies": {
     "@types/node": "^22.9.0",
     "ts-node": "^10.9.2",

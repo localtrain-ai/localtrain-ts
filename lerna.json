@@ -1,0 +1,19 @@
+{
+  "version": "0.0.1",
+  "npmClient": "yarn",
+  "command": {
+    "version": {
+      "exact": true,
+      "conventionalCommits": true,
+      "message": "chore(release): publish %s"
+    },
+    "publish": {
+      "conventionalCommits": true,
+      "message": "chore(release): publish",
+      "registry": "https://registry.npmjs.org/"
+    }
+  },
+  "packages": [
+    "packages/*"
+  ]
+}
