@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "node_modules/.bin/mintlify dev"
+    "dev": "node_modules/.bin/mintlify dev",
+    "build": "node_modules/.bin/mintlify build"
   },
   "dependencies": {
     "mintlify": "^4.0.275"

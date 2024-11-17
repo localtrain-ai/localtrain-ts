@@ -13,12 +13,34 @@
   },
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "Getting Started",
       "pages": [
         "introduction",
-        "quickstart",
-        "development"
+        "quickstart"
+      ]
+    },
+    {
+      "group": "Core Concepts",
+      "pages": [
+        "core-concepts/overview",
+        "core-concepts/architecture"
+      ]
+    },
+    {
+      "group": "API Reference",
+      "pages": [
+        "api-reference/core"
+      ]
+    },
+    {
+      "group": "Examples",
+      "pages": [
+        "examples/basic-usage",
+        "examples/advanced-usage"
       ]
     }
-  ]
+  ],
+  "footerSocials": {
+    "github": "https://github.com/yourusername/localtrain"
+  }
 }
