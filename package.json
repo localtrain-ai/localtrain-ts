@@ -4,6 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "docs:dev": "yarn workspace localtrain-docs dev"
+  },
   "workspaces": [
     "packages/*"
   ]

@@ -4,7 +4,6 @@ import {
   resolveRemainingVariables,
   resolveSystemVariables
 } from './utils';
-import { clone } from 'lodash';
 import { ContextDTO } from '../types';
 
 describe('resolveDynamicVariables with Fallback Support', () => {
@@ -121,7 +120,7 @@ describe('resolveDynamicVariables with Fallback Support', () => {
 
   it('should replace a variable from stepResults but leave the system variable out if the variable is not available in the execution context', () => {
     const input = '@advancedScraper_1.output.text[0] @iterationIndex';
-    const clonedContext = clone(mockContext);
+    const clonedContext = Object.assign(mockContext);
     delete clonedContext.systemExecutionContext;
     const result = resolveDynamicVariables(input, clonedContext);
     expect(result).toBe('sample extracted text @iterationIndex');

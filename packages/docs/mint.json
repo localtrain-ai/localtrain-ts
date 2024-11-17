@@ -1,0 +1,24 @@
+{
+  "name": "Your Company",
+  "logo": {
+    "light": "/assets/logo.png",
+    "dark": "/assets/logo.png",
+    "href": "https://yourcompany.com"
+  },
+  "favicon": "/assets/favicon.svg",
+  "colors": {
+    "primary": "#2AB673",
+    "light": "#55D799",
+    "dark": "#117866"
+  },
+  "navigation": [
+    {
+      "group": "Get Started",
+      "pages": [
+        "introduction",
+        "quickstart",
+        "development"
+      ]
+    }
+  ]
+}
