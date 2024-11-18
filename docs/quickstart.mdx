@@ -8,9 +8,9 @@ description: 'Get started with LocalTrain in minutes'
 ## Installation
 
 ```bash
-npm install @localtrain/core
+npm install @localtrain.ai/core @localtrain.ai/packages
 # or
-yarn add @localtrain/core
+yarn add @localtrain/core @localtrain.ai/packages
 ```
 
 ```typescript
@@ -18,12 +18,12 @@ import {Agent} from "@localtrain.ai/core";
 import {Openai} from "@localtrain.ai/packages";
 
 
-const agent = new Agent()
+new Agent()
     .useProviders(new Openai({apiKey: process.env.OPENAI_API_KEY}))
     .addBehaviour({
-        name: "asdad",
+        name: "SummarizationAgent",
         inputs: {
-            prompt: "summarize my name in english"
+            prompt: "Why is localtrain.ai so awesome?"
         },
         provider: "open-ai",
         providerType: "llm",
