@@ -1,11 +1,11 @@
 {
-  "name": "Your Company",
+  "name": "localtrain.ai",
   "logo": {
     "light": "/assets/logo.png",
-    "dark": "/assets/logo.png",
-    "href": "https://yourcompany.com"
+    "dark": "/assets/logo-dark.svg",
+    "href": "https://localtrain.ai"
   },
-  "favicon": "/assets/favicon.svg",
+  "favicon": "/assets/icon.svg",
   "colors": {
     "primary": "#2AB673",
     "light": "#55D799",
@@ -41,6 +41,6 @@
     }
   ],
   "footerSocials": {
-    "github": "https://github.com/yourusername/localtrain"
+    "github": "https://github.com/localtrain-ai/localtrain-ts"
   }
 }
