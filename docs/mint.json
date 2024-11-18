@@ -15,21 +15,20 @@
     {
       "group": "Getting Started",
       "pages": [
-        "introduction",
-        "quickstart"
+        "introduction"
       ]
     },
     {
       "group": "Core Concepts",
       "pages": [
-        "core-concepts/overview",
+        "core-concepts/building-blocks",
         "core-concepts/architecture"
       ]
     },
     {
-      "group": "API Reference",
+      "group": "Develop",
       "pages": [
-        "api-reference/core"
+        "sdks/typescript"
       ]
     },
     {

@@ -1,0 +1,89 @@
+---
+title: 'Core Concepts - Building Blocks'
+description: 'Understanding LocalTrain core concepts'
+---
+
+# Core Concepts
+Agent-based applications are structured around modular entities called **Agents**, designed to execute workflows and interact with external services. This approach promotes scalability, flexibility, and ease of integration for building complex, automation-driven solutions.
+
+## Agent
+
+An **Agent** is the primary entity in an agent-based application. It encapsulates the logic required to execute workflows by handling interactions, inputs, and behaviors that define its operations. Agents are role-specific, addressing particular tasks such as:
+
+- Integrating with APIs
+- Generating documentation
+- Managing version control
+
+In the code, an Agent object is defined with attributes such as `name`, `description`, and `inputs`, along with a collection of **[Behaviours]()**. This structured design enables Agents to operate efficiently in diverse workflows, handling tasks like data processing or user notifications with precision.
+
+## Behaviours
+
+**Behaviours** are the fundamental actions an Agent can perform. Each Behaviour represents an individual step or task within a workflow and includes attributes such as:
+
+- **Name**: Identifies the Behaviour
+- **Provider Type**: Specifies the external service or system it interacts with
+- **Inputs**: Defines the data required for execution
+
+Behaviours can range from simple actions, like loading a file, to complex tasks involving nested workflows. For example:
+
+- `load_template`: Load a specific template file.
+- `load_documentation`: Retrieve documentation from a URL.
+- `create_branch`: Create a new branch in a version control system like Bitbucket.
+
+By combining and orchestrating Behaviours, Agents create dynamic, flexible workflows tailored to application requirements.
+
+## Run
+
+The **Run** process manages the execution of an Agent. During this cycle, the Agent processes user inputs, selects relevant Behaviours, and orchestrates them to achieve desired outcomes.
+
+In the example code, this is achieved using the `run` method of the `AgenticWorkflow` class. The method:
+
+1. Instantiates an Agent.
+2. Configures it with defined Behaviours.
+3. Executes the workflow based on user-provided inputs.
+
+This encapsulated structure ensures smooth execution, clear input handling, and reliable interaction with external resources.
+
+## Providers
+
+**Providers** are the services or APIs that an Agent interacts with to perform tasks. Providers are responsible for executing the underlying logic, such as making network requests, processing data, or communicating with external systems.
+
+Examples of Providers in the code include:
+
+- **`local_file_loader`**: Load and process local files.
+- **`scraper`**: Extract and process data from web sources.
+- **`open-ai`**: Utilize AI capabilities like text summarization or file generation.
+- **`bitbucket`**: Interact with Bitbucket for version control operations.
+
+Providers are specified within Behaviours, allowing dynamic integration with external tools. For instance, the `create_branch` Behaviour integrates with Bitbucket via provider parameters to create branches programmatically.
+
+## Inputs
+
+**Inputs** define the data required for Agents to perform their tasks. They guide Behaviours in executing their logic by specifying:
+
+- **Name**: A unique identifier for the input.
+- **Title**: A user-friendly label for the input.
+- **Type**: The data type (e.g., string, URL).
+
+In the code, examples of inputs include:
+
+- `documentation_url`: A URL pointing to documentation resources.
+- `template_path`: A file path for loading templates.
+- `slack_id`: An identifier for sending Slack notifications.
+
+These inputs make workflows customizable, allowing users to tailor Agents to their specific needs.
+
+## Nested Behaviours
+
+**Nested Behaviours** enable Agents to manage complex workflows by grouping multiple Behaviours into hierarchical structures. This allows tasks to be:
+
+- **Sequential**: Behaviours execute one after another.
+- **Parallel**: Behaviours execute simultaneously.
+
+This feature facilitates the creation of multi-layered workflows, where high-level tasks consist of multiple sub-actions. For example, an Agent could simultaneously load a template and scrape data, then combine the results into a report.
+
+## Conclusion
+
+The Agent-based architecture offers a robust framework for building applications that require automation and integration with external services. By leveraging modular concepts such as **Agents**, **Behaviours**, **Run processes**, **Providers**, and **Inputs**, developers can design flexible, maintainable, and scalable workflows.
+
+This structured approach ensures adaptability to modern APIs and services, empowering developers to create sophisticated operational solutions with ease. Explore the potential of agent-based applications to revolutionize your development processes!

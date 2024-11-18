@@ -6,3 +6,24 @@ description: 'Basic examples of using LocalTrain'
 # Basic Usage Examples
 
 Simple examples to get started with LocalTrain.
+
+
+```typescript
+import {Agent} from "@localtrain.ai/core";
+import {Openai} from "@localtrain.ai/packages";
+
+new Agent()
+    .useProviders(new Openai({apiKey: process.env.OPENAI_API_KEY}))
+    .addBehaviour({
+        name: "asdad",
+        inputs: {
+            prompt: "summarize my name in english"
+        },
+        provider: "open-ai",
+        providerType: "llm",
+    })
+    .run()
+    .then(resultContext => {
+        console.log('res', resultContext.result)
+    })
+```
