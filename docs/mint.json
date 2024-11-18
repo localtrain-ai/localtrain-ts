@@ -1,7 +1,7 @@
 {
   "name": "localtrain.ai",
   "logo": {
-    "light": "/assets/logo.png",
+    "light": "/assets/logo.svg",
     "dark": "/assets/logo-dark.svg",
     "href": "https://localtrain.ai"
   },
