@@ -10,7 +10,7 @@
     "core:build": "yarn workspace @localtrain.ai/core build",
     "packages:build": "yarn workspace @localtrain.ai/packages build",
     "version": "lerna version",
-    "publish": "lerna publish",
+    "publish": "lerna publish from-package",
     "bootstrap": "lerna bootstrap",
     "clean": "lerna clean",
     "changed": "lerna changed",
