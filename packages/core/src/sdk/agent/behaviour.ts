@@ -51,8 +51,7 @@ export class Behaviour {
 
   async execute(
     provider: BaseProvider<any, any>,
-    context: ContextDTO,
-    mockExec = false
+    context: ContextDTO
   ): Promise<StepOutputDTO<any>> {
     if (!provider) {
       throw new Error('Cannot find provider');
@@ -60,13 +59,6 @@ export class Behaviour {
 
     const substitutedInputs = this.substituteInputs(context);
 
-    if (mockExec) {
-      return {
-        output: 'output',
-        timeTaken: 0,
-        context
-      };
-    }
     return provider.execute({ inputs: substitutedInputs }, context)
       .then((result) => {
         result.context = context;

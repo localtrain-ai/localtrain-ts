@@ -21,7 +21,6 @@ export class BehaviorExecutor {
   async executeBehavior(
     behavior: Behaviour,
     userInput: Record<string, any>,
-    mockRun: boolean,
     iterationContextManager?: ContextManager // Optional parameter for iterations
   ): Promise<void> {
     const providerKey = behavior.getProvider();
@@ -37,7 +36,6 @@ export class BehaviorExecutor {
         await this.executeFlowControlBehavior(
           behavior,
           userInput,
-          mockRun,
           iterationContextManager
         );
         break;
@@ -45,7 +43,6 @@ export class BehaviorExecutor {
         await this.executeConditionalBehavior(
           behavior,
           userInput,
-          mockRun,
           iterationContextManager
         );
         break;
@@ -54,7 +51,6 @@ export class BehaviorExecutor {
           behavior,
           provider,
           userInput,
-          mockRun,
           iterationContextManager
         );
     }
@@ -64,7 +60,6 @@ export class BehaviorExecutor {
     behavior: Behaviour,
     provider: BaseProvider<any, any>,
     userInput: Record<string, any>,
-    mockRun: boolean,
     iterationContextManager?: ContextManager
   ): Promise<void> {
     const currentContextManager = iterationContextManager || this.contextManager;
@@ -93,7 +88,6 @@ export class BehaviorExecutor {
     const result = await behavior.execute(
       provider,
       currentContextManager.cloneContext().getContext(),
-      mockRun
     );
     const timeTaken = Date.now() - startTime;
     logger.info(`Completed behaviour: ${behavior.getName()} in ${timeTaken}ms`);
@@ -111,6 +105,19 @@ export class BehaviorExecutor {
         },
       },
     });
+
+    if(currentContextManager.getContext().isLastExecutionBehaviour) {
+      currentContextManager.updateContext({
+        result: {
+          output: result.output,
+          tokensInput: result.inputTokens || 0,
+          tokensOutput: result.outputTokens || 0,
+          totalTokens:
+              (result.inputTokens || 0) + (result.outputTokens || 0),
+          timeTaken: result.timeTaken || 0,
+        }
+      })
+    }
 
     // Check for interrupt
     const interruptSignal = interruptManager.getInterrupt();
@@ -184,7 +191,6 @@ export class BehaviorExecutor {
   private async executeFlowControlBehavior(
     behavior: Behaviour,
     userInput: Record<string, any>,
-    mockRun: boolean,
     iterationContextManager?: ContextManager
   ): Promise<void> {
     const inputs = behavior.getInputs() as LooperProviderInputs;
@@ -209,14 +215,14 @@ export class BehaviorExecutor {
         //   limit(() => this.executeSingleIteration(behavior, userInput, mockRun, i))
         // );
         iterationPromises.push(
-          this.executeSingleIteration(behavior, userInput, mockRun, i)
+          this.executeSingleIteration(behavior, userInput, i)
         );
       }
       await Promise.all(iterationPromises);
     } else {
       // Execute iterations sequentially
       for (let i = 0; i < maxIterations; i++) {
-        await this.executeSingleIteration(behavior, userInput, mockRun, i);
+        await this.executeSingleIteration(behavior, userInput, i);
       }
     }
 
@@ -226,7 +232,6 @@ export class BehaviorExecutor {
   private async executeSingleIteration(
     behavior: Behaviour,
     userInput: Record<string, any>,
-    mockRun: boolean,
     iterationIndex: number
   ): Promise<void> {
     try {
@@ -255,7 +260,6 @@ export class BehaviorExecutor {
           await nestedExecutor.executeBehavior(
             nestedBehavior,
             userInput,
-            mockRun,
             iterationContextManager // Pass the iteration-specific context
           );
 
@@ -295,7 +299,6 @@ export class BehaviorExecutor {
   private async executeConditionalBehavior(
     behavior: Behaviour,
     userInput: Record<string, any>,
-    mockRun: boolean,
     iterationContextManager?: ContextManager
   ): Promise<void> {
     const condition = this.contextManager.resolveDynamicVariable(
@@ -308,7 +311,6 @@ export class BehaviorExecutor {
           await this.executeBehavior(
             nestedBehavior,
             userInput,
-            mockRun,
             iterationContextManager
           );
         }

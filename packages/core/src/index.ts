@@ -10,3 +10,4 @@ export * from './prompts';
 export * from './events/event-handler';
 export * from './events/events.list';
 export * from './managers';
+export * from './llm';

@@ -8,7 +8,8 @@
     "strict": true,
     "skipLibCheck": true,
     "paths": {
-      "@localtrain.ai/core": ["packages/core/src/index.ts"]
+      "@localtrain.ai/core": ["packages/core/src/index.ts"],
+      "@localtrain.ai/packages": ["packages/packages/src/index.ts"],
     }
   },
   "exclude": [

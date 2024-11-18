@@ -56,7 +56,7 @@ export class Agent extends AgentProvider {
   }
 
   async run(
-    userInput: Record<string, any>,
+    userInput?: Record<string, any>,
     mockRun = false,
     runId?: string,
     resume = false // New parameter to indicate resuming execution
@@ -72,7 +72,7 @@ export class Agent extends AgentProvider {
         this.contextManager = savedContextManager;
         this.contextManager.setStateStorage(this.stateStorage);
       } else {
-        this.validateInputs(userInput);
+        this.validateInputs(userInput || {});
         this.contextManager.updateContext({ userInput });
         this.contextManager.updateContext({
           runId: runId || uuidV4(),
@@ -86,10 +86,13 @@ export class Agent extends AgentProvider {
       // Execute remaining behaviors
       for (let i = startIndex; i < this.behaviours.length; i++) {
         const behaviour = this.behaviours[i];
+        this.contextManager.updateContext({
+          currentExecutionBehaviourIndex: i,
+          isLastExecutionBehaviour: i === this.behaviours.length - 1
+        })
         await this.behaviorExecutor.executeBehavior(
           behaviour,
-          userInput,
-          mockRun
+          userInput || {}
         );
 
         // Check if an interrupt occurred during this behavior

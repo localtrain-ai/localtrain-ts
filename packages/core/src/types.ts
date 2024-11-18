@@ -68,7 +68,7 @@ export interface LLMProviderBase {
 }
 // Version 1: With a string prompt
 export interface LLMProviderInputsString extends LLMProviderBase{
-  inputType: 'string';
+  inputType?: 'string';
   prompt: string;
 }
 
@@ -164,6 +164,7 @@ export interface LLMSessionTrace {
 
 export class ContextDTO {
   stepResults!: { [key: string]: any };
+  result!: any;
   userInput!: Record<string, any>;
   systemExecutionContext!: Record<string, any>;
   runId!: string;
@@ -179,6 +180,8 @@ export class ContextDTO {
   interrupted?: boolean;
   interruptSignal?: InterruptSignal;
   llmSessionTrace?: LLMSessionTrace;
+  currentExecutionBehaviourIndex?: number;
+  isLastExecutionBehaviour?: boolean;
 }
 
 export class LLMContextDTO extends ContextDTO {}

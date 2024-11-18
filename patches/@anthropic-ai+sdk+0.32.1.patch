@@ -1,0 +1,38 @@
+diff --git a/node_modules/@anthropic-ai/sdk/_vendor/partial-json-parser/parser.js b/node_modules/@anthropic-ai/sdk/_vendor/partial-json-parser/parser.js
+index b7b4ec3..dfeb8d1 100644
+--- a/node_modules/@anthropic-ai/sdk/_vendor/partial-json-parser/parser.js
++++ b/node_modules/@anthropic-ai/sdk/_vendor/partial-json-parser/parser.js
+@@ -154,7 +154,8 @@ const tokenize = (input) => {
+                 tokens = tokens.slice(0, tokens.length - 1);
+                 return strip(tokens);
+             }
+-        case 'string':
++          break;
++      case 'string':
+             let tokenBeforeTheLastToken = tokens[tokens.length - 2];
+             if (tokenBeforeTheLastToken?.type === 'delimiter') {
+                 tokens = tokens.slice(0, tokens.length - 1);
+diff --git a/node_modules/@anthropic-ai/sdk/_vendor/partial-json-parser/parser.mjs b/node_modules/@anthropic-ai/sdk/_vendor/partial-json-parser/parser.mjs
+index d2e0d5c..995adf0 100644
+--- a/node_modules/@anthropic-ai/sdk/_vendor/partial-json-parser/parser.mjs
++++ b/node_modules/@anthropic-ai/sdk/_vendor/partial-json-parser/parser.mjs
+@@ -151,6 +151,7 @@ const tokenize = (input) => {
+                 tokens = tokens.slice(0, tokens.length - 1);
+                 return strip(tokens);
+             }
++            break;
+         case 'string':
+             let tokenBeforeTheLastToken = tokens[tokens.length - 2];
+             if (tokenBeforeTheLastToken?.type === 'delimiter') {
+diff --git a/node_modules/@anthropic-ai/sdk/src/_vendor/partial-json-parser/parser.ts b/node_modules/@anthropic-ai/sdk/src/_vendor/partial-json-parser/parser.ts
+index 9470c46..cee61b2 100644
+--- a/node_modules/@anthropic-ai/sdk/src/_vendor/partial-json-parser/parser.ts
++++ b/node_modules/@anthropic-ai/sdk/src/_vendor/partial-json-parser/parser.ts
+@@ -187,6 +187,7 @@ const tokenize = (input: string): Token[] => {
+           tokens = tokens.slice(0, tokens.length - 1);
+           return strip(tokens);
+         }
++        break;
+       case 'string':
+         let tokenBeforeTheLastToken = tokens[tokens.length - 2];
+         if (tokenBeforeTheLastToken?.type === 'delimiter') {
