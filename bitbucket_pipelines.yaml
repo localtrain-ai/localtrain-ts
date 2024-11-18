@@ -1,0 +1,28 @@
+pipelines:
+  default:
+    - step:
+        name: Push to GitHub
+        image: atlassian/default-image:latest
+        script:
+          - echo "Setting up Git configuration"
+          - git config --global user.name "localtrain pilot"
+          - git config --global user.email "pilot@localtrain.ai"
+
+          # Clone the Bitbucket repository
+          - echo "Cloning Bitbucket repository"
+          - git clone --depth 1 https://x-token-auth:$BITBUCKET_TOKEN@bitbucket.org/<bitbucket-repo-owner>/<bitbucket-repo-name>.git repo
+          - cd repo
+
+          # Remove bitbucket-pipelines.yml
+          - echo "Removing bitbucket-pipelines.yaml"
+          - rm -f bitbucket-pipelines.yaml
+
+          # Add GitHub remote
+          - echo "Adding GitHub repository"
+          - git remote add github $GITHUB_REPO_URL
+
+          # Commit and push to GitHub
+          - echo "Pushing code to GitHub"
+          - git add .
+          - git commit -m "Syncing repository from Bitbucket to GitHub [skip ci]" || echo "No changes to commit"
+          - git push github main --force
